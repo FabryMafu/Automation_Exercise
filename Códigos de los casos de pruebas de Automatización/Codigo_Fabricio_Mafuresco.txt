@@ -1,0 +1,747 @@
+/* Codigo de casos de prueba automatizados hecho por Fabricio Mafuresco */
+
+/* Caso 1 */
+import { test, expect } from '@playwright/test';
+test('Caso 1', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.locator('div').filter({ hasText: 'New User Signup! Signup' }).nth(2).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('F');
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('Fabry');
+  await page.getByPlaceholder('Name').press('Tab');
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill('fabry@mail.com');
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByText('Mr.').click();
+  await page.getByLabel('Name *', { exact: true }).click();
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('password');
+  await page.locator('#days').selectOption('31');
+  await page.locator('#months').selectOption('5');
+  await page.locator('#years').selectOption('2004');
+  await page.getByLabel('Sign up for our newsletter!').check();
+  await page.getByLabel('Receive special offers from our partners!').check();
+  await page.getByLabel('First name *').click();
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('F');
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('Fabricio');
+  await page.getByLabel('First name *').press('Tab');
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('M');
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('Mafuresco');
+  await page.getByLabel('Last name *').press('Tab');
+  await page.getByLabel('Company', { exact: true }).press('CapsLock');
+  await page.getByLabel('Company', { exact: true }).fill('F');
+  await page.getByLabel('Company', { exact: true }).press('CapsLock');
+  await page.getByLabel('Company', { exact: true }).fill('Fundacion');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').click();
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('street address');
+  await page.getByLabel('Address 2').click();
+  await page.getByLabel('Address 2').fill('street address 2');
+  await page.getByLabel('Country *').selectOption('United States');
+  await page.getByLabel('State *').click();
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('C');
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('California');
+  await page.getByLabel('City *').click();
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('C');
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('California');
+  await page.locator('#zipcode').click();
+  await page.locator('#zipcode').fill('2451');
+  await page.getByLabel('Mobile Number *').click();
+  await page.getByLabel('Mobile Number *').fill('+1 457 9853');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.getByText('Account Created! Congratulations! Your new account has been successfully created').click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByText('Account Deleted! Your account has been permanently deleted! You can create new a').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
+
+/* Caso 2 (Correo Nuevo) */
+test('Caso 2', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.getByText('Login to your account Login').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('fabry@correo2.com');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').press('Tab');
+  await page.getByPlaceholder('Password').fill('password');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByText('Logged in as Fabry').click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByText('Account Deleted! Your account has been permanently deleted! You can create new a').click();
+});
+
+/* Caso 3 */
+test('Caso 3', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.getByText('Login to your account Login').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('fabry@mail.com');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').press('Tab');
+  await page.getByPlaceholder('Password').fill('pass-word');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByText('Your email or password is incorrect!').click();
+});
+
+/* Caso 4 (Correo Nuevo) */
+test('Caso 4', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.locator('div').filter({ hasText: 'Login to your account Login' }).nth(2).click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('fabry@correo4.com');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').press('Tab');
+  await page.getByPlaceholder('Password').fill('password');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByText('Logged in as Fabry').click();
+  await page.getByRole('link', { name: ' Logout' }).click();
+  await page.getByText('Login to your account Login OR New User Signup! Signup').click();
+});
+
+/* Caso 5 (Correo anterior caso) */
+test('Caso 5', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.locator('div').filter({ hasText: 'New User Signup! Signup' }).nth(2).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('F');
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('Fabry');
+  await page.getByPlaceholder('Name').press('Tab');
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill('fabry@correo4.com');
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByText('Email Address already exist!').click();
+});
+
+/* Caso 6 (No es posible ejecutarlo correctamente) */
+test('Caso 6', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Contact us' }).click();
+  await page.getByRole('heading', { name: 'Get In Touch' }).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('F');
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('Fabry');
+  await page.getByPlaceholder('Name').press('Tab');
+  await page.getByPlaceholder('Email', { exact: true }).fill('fabry@mail.com');
+  await page.getByPlaceholder('Email', { exact: true }).press('Tab');
+  await page.getByPlaceholder('Subject').press('CapsLock');
+  await page.getByPlaceholder('Subject').fill('P');
+  await page.getByPlaceholder('Subject').press('CapsLock');
+  await page.getByPlaceholder('Subject').fill('Prueba');
+  await page.getByPlaceholder('Subject').press('Tab');
+  await page.getByPlaceholder('Your Message Here').press('CapsLock');
+  await page.getByPlaceholder('Your Message Here').fill('C');
+  await page.getByPlaceholder('Your Message Here').press('CapsLock');
+  await page.getByPlaceholder('Your Message Here').fill('Comentario de prueba');
+  // await page.locator('input[name="upload_file"]').click();
+  // await page.locator('input[name="upload_file"]').setInputFiles('Preuba de caso 6.txt');
+  //  page.once('dialog', dialog => {
+  //  console.log(`Dialog message: ${dialog.message()}`);
+  //  dialog.dismiss().catch(() => {});
+  // });
+  await page.getByRole('button', { name: 'Submit' }).click();
+  // await page.locator('#contact-page').getByText('Success! Your details have been submitted successfully.').click();
+  await page.getByRole('link', { name: ' Home' }).click();
+});
+
+
+/* Caso 7 */
+test('Caso 7', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Test Cases' }).click();
+  await page.getByText('Test Cases Below is the list of test Cases for you to practice the Automation. C').click();
+});
+
+/* Caso 8 */
+test('Caso 8', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Products' }).click();
+  await page.getByRole('heading', { name: 'All Products' }).click();
+  await page.getByText('All Products  Added! Your product has been added to cart. View Cart Continue Sh').click();
+  await page.locator('.choose > .nav > li > a').first().click();
+  await page.getByText(' Added! Your product has been added to cart. View Cart Continue Shopping Blue T').click();
+  await page.getByText('Blue Top Category: Women > Tops Rs. 500 Quantity: Add to cart Availability: In S').click();
+});
+
+/* Caso 9 */
+test('Caso 9', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Products' }).click();
+  await page.getByRole('heading', { name: 'All Products' }).click();
+  await page.getByPlaceholder('Search Product').click();
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('W');
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('Winter ');
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('Winter T');
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('Winter Top');
+  await page.getByRole('button', { name: '' }).click();
+  await page.getByRole('heading', { name: 'Searched Products' }).click();
+  await page.getByText('Rs. 600 Winter Top Add to cart Rs. 600 Winter Top Add to cart View Product').click();
+});
+
+/* Caso 10  */
+test('Caso 10', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.locator('#footer').click();
+  await page.getByRole('heading', { name: 'Subscription' }).click();
+  await page.getByPlaceholder('Your email address').click();
+  await page.getByPlaceholder('Your email address').fill('fabry@mail.com');
+  await page.getByRole('button', { name: '' }).click();
+  // frame.click(page.getByText('You have been successfully subscribed!'))
+});
+
+/* Caso 11  */
+test('Caso 11', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.locator('#footer').click();
+  await page.getByRole('heading', { name: 'Subscription' }).click();
+  await page.getByPlaceholder('Your email address').click();
+  await page.getByPlaceholder('Your email address').fill('fabry@mail.com');
+  await page.getByRole('button', { name: '' }).click();
+  // frame.click(page.getByText('You have been successfully subscribed!'))
+});
+
+/* Caso 12 */
+test('Caso 12', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Products' }).click();
+  await page.locator('.overlay-content > .btn').first().click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(4) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('link', { name: 'View Cart' }).click();
+  await page.getByRole('row', { name: 'Product Image Blue Top Women > Tops Rs. 500 1 Rs. 500 ' }).click();
+  await page.getByRole('row', { name: 'Product Image Men Tshirt Men > Tshirts Rs. 400 1 Rs. 400 ' }).click();
+  await page.getByRole('cell', { name: 'Rs. 500' }).first().click();
+  await page.locator('#product-1').getByRole('cell', { name: '1' }).click();
+  await page.getByRole('cell', { name: 'Rs. 400' }).first().click();
+  await page.locator('#product-2').getByRole('cell', { name: '1' }).click();
+  await page.getByRole('cell', { name: 'Rs. 500' }).nth(1).click();
+  await page.getByRole('cell', { name: 'Rs. 400' }).nth(1).click();
+});
+
+/* Caso 13 */
+test('Caso 13', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.locator('div:nth-child(6) > .product-image-wrapper > .choose > .nav > li > a').click();
+  await page.getByText('Stylish Dress Category: Women > Dress Rs. 1500 Quantity: Add to cart Availabilit').click();
+  await page.locator('#quantity').click();
+  await page.locator('#quantity').fill('4');
+  await page.getByRole('button', { name: ' Add to cart' }).click();
+  await page.getByRole('link', { name: 'View Cart' }).click();
+  await page.getByRole('cell', { name: '4' }).click();
+});
+
+/* Caso 14 */
+test('Caso 14', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.locator('.overlay-content > .btn').first().click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.getByText('Proceed To Checkout').click();
+  await page.getByRole('link', { name: 'Register / Login' }).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('J');
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('Juan');
+  await page.getByPlaceholder('Name').press('Tab');
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill('juan@mail.com');
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByLabel('Mr.').check();
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('password');
+  await page.locator('#days').selectOption('31');
+  await page.locator('#months').selectOption('5');
+  await page.locator('#years').selectOption('2004');
+  await page.getByLabel('First name *').click();
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('J');
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('Juan');
+  await page.getByLabel('First name *').press('Tab');
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('P');
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('Perez');
+  await page.getByLabel('Company', { exact: true }).click();
+  await page.getByLabel('Company', { exact: true }).press('CapsLock');
+  await page.getByLabel('Company', { exact: true }).fill('C');
+  await page.getByLabel('Company', { exact: true }).press('CapsLock');
+  await page.getByLabel('Company', { exact: true }).fill('Company');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').click();
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').press('CapsLock');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('C');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').press('CapsLock');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('Calle');
+  await page.getByLabel('Address 2').click();
+  await page.getByLabel('Address 2').fill('1247');
+  await page.getByLabel('Country *').selectOption('United States');
+  await page.getByLabel('State *').click();
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('C');
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('California');
+  await page.getByLabel('City *').click();
+  await page.getByLabel('City *').fill('California');
+  await page.locator('#zipcode').click();
+  await page.locator('#zipcode').fill('4652');
+  await page.getByLabel('Mobile Number *').click();
+  await page.getByLabel('Mobile Number *').fill('32156487');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.getByText('Account Created! Congratulations! Your new account has been successfully created').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+  await page.getByText('Logged in as Juan').click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.getByText('Proceed To Checkout').click();
+  await page.getByText('Your delivery address Mr. Juan Perez Company Calle 1247 California California 46').click();
+  await page.locator('#cart_info').click();
+  await page.locator('textarea[name="message"]').click();
+  await page.locator('textarea[name="message"]').press('CapsLock');
+  await page.locator('textarea[name="message"]').fill('C');
+  await page.locator('textarea[name="message"]').press('CapsLock');
+  await page.locator('textarea[name="message"]').fill('Comentario de prueba');
+  await page.getByRole('link', { name: 'Place Order' }).click();
+  await page.locator('input[name="name_on_card"]').click();
+  await page.locator('input[name="name_on_card"]').fill('');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('J');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('Juan ');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('Juan P');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('Juan Perez');
+  await page.locator('input[name="card_number"]').click();
+  await page.locator('input[name="card_number"]').fill('23524546879');
+  await page.getByPlaceholder('ex. 311').click();
+  await page.getByPlaceholder('ex. 311').fill('345');
+  await page.getByPlaceholder('MM').click();
+  await page.getByPlaceholder('MM').fill('02');
+  await page.getByPlaceholder('YYYY').click();
+  await page.getByPlaceholder('YYYY').fill('2026');
+  await page.getByRole('button', { name: 'Pay and Confirm Order' }).click();
+  await page.getByText('Order Placed! Congratulations! Your order has been confirmed! Download Invoice C').click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByText('Account Deleted! Your account has been permanently deleted! You can create new a').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
+
+/* Caso 15 */
+test('Caso 15', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('J');
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('Jorge');
+  await page.getByPlaceholder('Name').press('Tab');
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill('jorge@mail.com');
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByLabel('Mr.').check();
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('password');
+  await page.locator('#days').selectOption('3');
+  await page.locator('#months').selectOption('2');
+  await page.locator('#years').selectOption('2004');
+  await page.getByLabel('First name *').click();
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('J');
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('Jorge');
+  await page.getByLabel('Last name *').click();
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('S');
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('Sanchez');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').click();
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').press('CapsLock');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('C');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').press('CapsLock');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('Calle 895');
+  await page.getByLabel('Country *').selectOption('United States');
+  await page.getByLabel('State *').click();
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('N');
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('Nueva ');
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('Nueva Y');
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('Nueva York');
+  await page.getByLabel('City *').click();
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('N');
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('Nueva ');
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('Nueva Y');
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('Nueva York');
+  await page.locator('#zipcode').click();
+  await page.locator('#zipcode').fill('4623');
+  await page.getByLabel('Mobile Number *').click();
+  await page.getByLabel('Mobile Number *').fill('358789845');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.getByText('Account Created! Congratulations! Your new account has been successfully created').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+  await page.getByText('Logged in as Jorge').click();
+  await page.locator('div:nth-child(5) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(8) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.locator('#cart_info').click();
+  await page.getByText('Proceed To Checkout').click();
+  await page.getByText('Your delivery address Mr. Jorge Sanchez Calle 895 Nueva York Nueva York 4623 Uni').click();
+  await page.locator('#cart_info').click();
+  await page.locator('textarea[name="message"]').click();
+  await page.locator('textarea[name="message"]').press('CapsLock');
+  await page.locator('textarea[name="message"]').fill('C');
+  await page.locator('textarea[name="message"]').press('CapsLock');
+  await page.locator('textarea[name="message"]').fill('Comentario de prueba');
+  await page.getByRole('link', { name: 'Place Order' }).click();
+  await page.locator('input[name="name_on_card"]').click();
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('J');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('Jorge ');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('Jorge S');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('Jorge Sanchez');
+  await page.locator('input[name="card_number"]').click();
+  await page.locator('input[name="card_number"]').fill('968653223');
+  await page.getByPlaceholder('ex. 311').click();
+  await page.getByPlaceholder('ex. 311').fill('408');
+  await page.getByPlaceholder('MM').click();
+  await page.getByPlaceholder('MM').fill('06');
+  await page.getByPlaceholder('YYYY').click();
+  await page.getByPlaceholder('YYYY').fill('2027');
+  await page.getByRole('button', { name: 'Pay and Confirm Order' }).click();
+  await page.getByText('Order Placed! Congratulations! Your order has been confirmed! Download Invoice C').click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByText('Account Deleted! Your account has been permanently deleted! You can create new a').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
+
+/* Caso 16 (Correo Nuevo) */
+test('Caso 16', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('fabry@correo16.com');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').press('Tab');
+  await page.getByPlaceholder('Password').fill('password');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByText('Logged in as Fabry').click();
+  await page.locator('div:nth-child(4) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(24) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.locator('#cart_info').click();
+  await page.getByText('Proceed To Checkout').click();
+  await page.getByRole('heading', { name: 'Address Details' }).click();
+  await page.getByText('Your delivery address Mr. Fabricio Mafuresco Fundacion street address street add').click();
+  await page.locator('#cart_info').click();
+  await page.locator('textarea[name="message"]').click();
+  await page.locator('textarea[name="message"]').press('CapsLock');
+  await page.locator('textarea[name="message"]').fill('C');
+  await page.locator('textarea[name="message"]').press('CapsLock');
+  await page.locator('textarea[name="message"]').fill('Comentario de prueba');
+  await page.getByRole('link', { name: 'Place Order' }).click();
+  await page.locator('input[name="name_on_card"]').click();
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('F');
+  await page.locator('input[name="name_on_card"]').press('CapsLock');
+  await page.locator('input[name="name_on_card"]').fill('Fabry');
+  await page.locator('input[name="name_on_card"]').press('Tab');
+  await page.locator('input[name="card_number"]').fill('132434687');
+  await page.getByPlaceholder('ex. 311').click();
+  await page.getByPlaceholder('ex. 311').fill('698');
+  await page.getByPlaceholder('MM').click();
+  await page.getByPlaceholder('MM').fill('05');
+  await page.getByPlaceholder('YYYY').click();
+  await page.getByPlaceholder('YYYY').fill('2026');
+  await page.getByRole('button', { name: 'Pay and Confirm Order' }).click();
+  await page.getByText('Order Placed! Congratulations! Your order has been confirmed! Download Invoice C').click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByText('Account Deleted! Your account has been permanently deleted! You can create new a').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
+
+/* Caso 17 */
+test('Caso 17', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.locator('div:nth-child(4) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(7) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.locator('#cart_info').click();
+  await page.locator('#product-2').getByRole('cell', { name: '' }).locator('a').click();
+  await page.locator('#cart_info').click();
+  await page.getByRole('cell', { name: '' }).locator('a').click();
+  await page.locator('#empty_cart').click();
+});
+
+/* Caso 18 */
+test('Caso 18', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByText('Category Women Dress Tops Saree Men Tshirts Jeans Kids Dress Tops & Shirts Brand').click();
+  await page.getByRole('link', { name: ' Women' }).click();
+  await page.getByRole('link', { name: 'Dress' }).click();
+  await page.getByRole('heading', { name: 'Women - Dress Products' }).click();
+  await page.getByRole('link', { name: ' Men' }).click();
+  await page.getByRole('link', { name: 'Jeans' }).click();
+  await page.getByRole('heading', { name: 'Men - Jeans Products' }).click();
+});
+
+/* Caso 19 */
+test('Caso 19', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Products' }).click();
+  await page.getByRole('heading', { name: 'Brands' }).click();
+  await page.getByRole('link', { name: '(5) H&M' }).click();
+  await page.getByText('Brand - H&M Products  Added! Your product has been added to cart. View Cart Con').click();
+  await page.getByRole('link', { name: '(3) Mast & Harbour' }).click();
+  await page.getByText('Brand - Mast & Harbour Products  Added! Your product has been added to cart. Vi').click();
+});
+
+/* Caso 20 (Correo Nuevo) */
+test('Caso 20', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Products' }).click();
+  await page.getByRole('heading', { name: 'All Products' }).click();
+  await page.getByPlaceholder('Search Product').click();
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('M');
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('Men ');
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('Men T');
+  await page.getByPlaceholder('Search Product').press('CapsLock');
+  await page.getByPlaceholder('Search Product').fill('Men Tshirt');
+  await page.getByRole('button', { name: '' }).click();
+  await page.getByRole('heading', { name: 'Searched Products' }).click();
+  await page.getByText('Rs. 400 Men Tshirt Add to cart Rs. 400 Men Tshirt Add to cart View Product').click();
+  await page.getByText('Add to cart').nth(1).click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.getByRole('row', { name: 'Product Image Men Tshirt Men > Tshirts Rs. 400 1 Rs. 400 ' }).click();
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('fabry@correo20.com');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').press('Tab');
+  await page.getByPlaceholder('Password').fill('password');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.getByRole('row', { name: 'Product Image Men Tshirt Men > Tshirts Rs. 400 1 Rs. 400 ' }).click();
+});
+
+/* Caso 21 */
+test('Caso 21', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Products' }).click();
+  await page.getByRole('heading', { name: 'All Products' }).click();
+  await page.locator('div:nth-child(4) > .product-image-wrapper > .choose > .nav > li > a').click();
+  await page.locator('ul').filter({ hasText: 'Write Your Review' }).click();
+  await page.getByPlaceholder('Your Name').click();
+  await page.getByPlaceholder('Your Name').press('CapsLock');
+  await page.getByPlaceholder('Your Name').fill('F');
+  await page.getByPlaceholder('Your Name').press('CapsLock');
+  await page.getByPlaceholder('Your Name').fill('Fabry');
+  await page.getByPlaceholder('Your Name').press('Tab');
+  await page.getByPlaceholder('Email Address', { exact: true }).fill('fabry@mail.com');
+  await page.getByPlaceholder('Email Address', { exact: true }).press('Tab');
+  await page.getByPlaceholder('Add Review Here!').press('CapsLock');
+  await page.getByPlaceholder('Add Review Here!').fill('B');
+  await page.getByPlaceholder('Add Review Here!').press('CapsLock');
+  await page.getByPlaceholder('Add Review Here!').fill('Buen producto');
+  await page.getByRole('button', { name: 'Submit' }).click();
+  // getByText('Thank you for your review.')
+});
+
+/* Caso 22 */
+test('Caso 22', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('heading', { name: 'recommended items' }).click();
+  await page.locator('.item > div:nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn').first().click();
+  await page.getByRole('link', { name: 'View Cart' }).click();
+  await page.getByRole('row', { name: 'Product Image Sleeveless Dress Women > Dress Rs. 1000 1 Rs. 1000 ' }).click();
+});
+
+/* Caso 23 */
+test('Caso 23', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('K');
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('Kevin');
+  await page.getByPlaceholder('Name').press('Tab');
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill('kevin@mail.com');
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByLabel('Mr.').check();
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('password');
+  await page.locator('#days').selectOption('15');
+  await page.locator('#months').selectOption('3');
+  await page.locator('#years').selectOption('2004');
+  await page.getByLabel('First name *').click();
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('K');
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('Kevin');
+  await page.getByLabel('First name *').press('Tab');
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('L');
+  await page.getByLabel('Last name *').press('CapsLock');
+  await page.getByLabel('Last name *').fill('Lopez');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').click();
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').press('CapsLock');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('C');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').press('CapsLock');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('Calle689');
+  await page.getByLabel('Country *').selectOption('United States');
+  await page.getByLabel('State *').click();
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('C');
+  await page.getByLabel('State *').press('CapsLock');
+  await page.getByLabel('State *').fill('Ciudad');
+  await page.getByLabel('City *').click();
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('C');
+  await page.getByLabel('City *').press('CapsLock');
+  await page.getByLabel('City *').fill('Ciudad');
+  await page.getByLabel('City *').press('Tab');
+  await page.locator('#zipcode').fill('3226');
+  await page.getByLabel('Mobile Number *').click();
+  await page.getByLabel('Mobile Number *').fill('4658976532');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.getByText('Account Created! Congratulations! Your new account has been successfully created').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+  await page.getByText('Logged in as Kevin').click();
+  await page.locator('div:nth-child(6) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(10) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(17) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(23) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.locator('#cart_info').click();
+  await page.getByText('Proceed To Checkout').click();
+  await page.getByText('Your delivery address Mr. Kevin Lopez Calle689 Ciudad Ciudad 3226 United States ').click();
+  await page.getByText('Your billing address Mr. Kevin Lopez Calle689 Ciudad Ciudad 3226 United States 4').click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByText('Account Deleted! Your account has been permanently deleted! You can create new a').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
+
+/* Caso 24 (No es posible ejecutarlo) */
+test('Caso 24', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.locator('div:nth-child(6) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.locator('div:nth-child(11) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn').click();
+  await page.getByRole('button', { name: 'Continue Shopping' }).click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.locator('#cart_info').click();
+  await page.getByText('Proceed To Checkout').click();
+  await page.getByRole('link', { name: 'Register / Login' }).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').fill('Mauro');
+  await page.getByPlaceholder('Name').press('Tab');
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill('mauro1324@mail.com');
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByLabel('Mr.').check();
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('password');
+  await page.locator('#days').selectOption('16');
+  await page.locator('#months').selectOption('5');
+  await page.locator('#years').selectOption('2004');
+  await page.getByLabel('First name *').click();
+  await page.getByLabel('First name *').fill('Mauro');
+  await page.getByLabel('First name *').press('Tab');
+  await page.getByLabel('Last name *').fill('Lopez');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').click();
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('Calle 326');
+  await page.getByLabel('Country *').selectOption('United States');
+  await page.getByLabel('State *').click();
+  await page.getByLabel('State *').fill('Ciudad');
+  await page.getByLabel('State *').press('Tab');
+  await page.getByLabel('City *').fill('Ciudad');
+  await page.getByLabel('City *').press('Tab');
+  await page.locator('#zipcode').fill('4578');
+  await page.locator('#zipcode').press('Tab');
+  await page.getByLabel('Mobile Number *').fill('23246451015');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.getByText('Account Created! Congratulations! Your new account has been successfully created').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+  await page.getByText('Logged in as Mauro').click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.getByText('Proceed To Checkout').click();
+  await page.getByRole('heading', { name: 'Address Details' }).click();
+  await page.getByText('Your billing address Mr. Mauro Lopez Calle 326 Ciudad Ciudad 4578 United States ').click();
+  await page.getByRole('heading', { name: 'Review Your Order' }).click();
+  await page.locator('textarea[name="message"]').click();
+  await page.locator('textarea[name="message"]').fill('Comentario de prueba');
+  await page.getByRole('link', { name: 'Place Order' }).click();
+  await page.locator('input[name="name_on_card"]').click();
+  await page.locator('input[name="name_on_card"]').fill('Mauro Lopez');
+  await page.locator('input[name="name_on_card"]').press('Tab');
+  await page.locator('input[name="card_number"]').fill('21545687952');
+  await page.getByPlaceholder('ex. 311').click();
+  await page.getByPlaceholder('ex. 311').fill('145');
+  await page.getByPlaceholder('ex. 311').press('Tab');
+  await page.getByPlaceholder('MM').fill('10');
+  await page.getByPlaceholder('MM').press('Tab');
+  await page.getByPlaceholder('YYYY').fill('2025');
+  await page.getByRole('button', { name: 'Pay and Confirm Order' }).click();
+  await page.getByText('Order Placed! Congratulations! Your order has been confirmed! Download Invoice C').click();
+  // const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Download Invoice' }).click();
+  // const download = await downloadPromise;
+  await page.getByRole('link', { name: 'Continue' }).click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByText('Account Deleted! Your account has been permanently deleted! You can create new a').click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
+
+
+/* Caso 25 */
+test('Caso 25', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.locator('#footer').click();
+  await page.locator('div').filter({ hasText: 'Subscription Get the most recent updates from our site and be updated your self.' }).nth(3).click();
+  await page.getByRole('link', { name: '' }).click();
+  await page.getByText('AutomationExercise Full-Fledged practice website for Automation Engineers All QA').nth(2).click();
+});
+
+/* Caso 26 */
+test('Caso 26', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.locator('#footer').click();
+  await page.locator('div').filter({ hasText: 'Subscription Get the most recent updates from our site and be updated your self.' }).nth(3).click();
+  await page.getByText('AutomationExercise Full-Fledged practice website for Automation Engineers All QA').nth(2).click();
+});
