@@ -1,0 +1,56 @@
+/* Codigo de casos de prueba automatizados por Nair Ledesma */
+
+// Actividad 1
+
+import { test, expect } from '@playwright/test';
+
+test('test 1', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.goto('https://automationexercise.com/login');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('nair.estudio');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('nair.estudio1623');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('nair.estudio1623@gmail.com');
+  await page.getByPlaceholder('Password').click();
+  await page.getByPlaceholder('Password').click();
+  await page.getByPlaceholder('Password').fill('nair1623');
+  await page.getByRole('button', { name: 'Login' }).click();
+});
+
+
+// Actividad 2 
+
+test('test 2', async ({ page }) => {
+
+
+    //Navegar en la URL  'http://automationexercise.com'
+
+
+  await page.goto('https://automationexercise.com/');
+ 
+   // Ingresar la dirección de correo electrónico y la contraseña correctas.
+ 
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('nair');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').press('Alt+Control+@');
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('nair@live.com.ar');
+  await page.getByPlaceholder('Password').click();
+  await page.getByPlaceholder('Password').fill('nair1623');
+
+
+  //Hacer click en el botón 'Iniciar Sesión'
+
+
+  await page.getByRole('button', { name: 'Login' }).click();
+
+
+  //hacer clic en el botón   'Eliminar cuenta'
+
+
+  await page.getByRole('link', { name: 'Delete Account' }).click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
