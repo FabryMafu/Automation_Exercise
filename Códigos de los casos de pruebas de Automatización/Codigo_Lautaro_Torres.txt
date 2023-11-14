@@ -1,0 +1,51 @@
+/* Codigo de casos de prueba automatizados hecho por Lautaro Torres */
+
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://automationexercise.com/');
+  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.getByPlaceholder('Name').click();
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('TRUMAN');
+  await page.getByPlaceholder('Name').press('CapsLock');
+  await page.getByPlaceholder('Name').fill('Truman');
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').click();
+  await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').fill('falso1234@gmail.com');
+  await page.getByRole('button', { name: 'Signup' }).click();
+  await page.getByText('Mr.').click();
+  await page.getByLabel('Password *').click();
+  await page.getByLabel('Password *').fill('falso1234@gmail.com');
+  await page.locator('#months').selectOption('1');
+  await page.locator('#years').selectOption('2003');
+  await page.getByText('Sign up for our newsletter!').click();
+  await page.locator('#form form div').filter({ hasText: 'Receive special offers from our partners!' }).click();
+  await page.getByLabel('First name *').click();
+  await page.getByLabel('First name *').fill('reuma');
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('');
+  await page.getByLabel('First name *').press('CapsLock');
+  await page.getByLabel('First name *').fill('truman');
+  await page.getByLabel('Last name *').click();
+  await page.getByLabel('Last name *').fill('show');
+  await page.getByLabel('Company', { exact: true }).click();
+  await page.getByLabel('Company', { exact: true }).fill('coca-cola company');
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').click();
+  await page.getByLabel('Address * (Street address, P.O. Box, Company name, etc.)').fill('colorado 1234');
+  await page.getByLabel('Address 2').click();
+  await page.getByLabel('Address 2').fill('showman 4567');
+  await page.getByLabel('Country *').selectOption('United States');
+  await page.getByLabel('State *').click();
+  await page.getByLabel('State *').fill('miami');
+  await page.getByLabel('City *').click();
+  await page.getByLabel('City *').fill('miami');
+  await page.locator('#zipcode').click();
+  await page.locator('#zipcode').fill('102345');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.getByLabel('Mobile Number *').click();
+  await page.getByLabel('Mobile Number *').fill('123456789');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+  await page.getByRole('link', { name: ' Delete Account' }).click();
+  await page.getByRole('link', { name: 'Continue' }).click();
+});
